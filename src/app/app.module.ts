@@ -12,6 +12,7 @@ import {appRoutes} from './app.routing';
 import {LoginModule} from './component/login/login.module';
 import {AuthGuardGuard} from './shared/guards/auth-guard.guard';
 import {AddHeaderInterceptor} from './shared/Interceptor/header.interceptor';
+import {MainModule} from './component/main/main/main.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {AddHeaderInterceptor} from './shared/Interceptor/header.interceptor';
     CoreModule,
     SuperheroModule,
     LoginModule,
+    MainModule,
     appRoutes
   ],
   providers: [AuthGuardGuard,
