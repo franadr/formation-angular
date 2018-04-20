@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+
+<mat-card>
+  <div *ngIf="isVisible" >
+    <mat-form-field>
+      <input matInput placeholder="name" [(ngModel)]="searchText" >
+    </mat-form-field>
+    <!--<button mat-raised-button color="green" (click)="filter()">Filter results</button>-->
+  </div>
+  <button mat-raised-button color="green" (click)="hide()">{{this.isVisible ? 'hide' : 'unhide'}}</button>
+</mat-card>
+<mat-card-content *ngIf="selectedIdHero">
+  <app-superhero-detail [idHero]="selectedIdHero" (close)="selectedIdHero = null"></app-superhero-detail>
+</mat-card-content>
+<mat-grid-list cols="4" gutterSize="15px">
+  <mat-grid-tile  *ngFor="let hero of heroes | filter : searchText">
+    <mat-card appHighLight [selectedHero]="selectedIdHero" [superHero]="hero.idHero" [style.background-image]="getImagesrc(hero.imageSrc)"  class="light-description" (click)="showDetail(hero.idHero)">
+      <mat-card-header  >
+        <h2>{{hero.heroName}}</h2>
+      </mat-card-header>
+      <!--<img mat-card-image src="http://localhost:8080/{{hero.imageSrc}}" >-->
+
+      <!--<img mat-card-avatar [src]="getImagesrc(hero.imageURL)"/>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+

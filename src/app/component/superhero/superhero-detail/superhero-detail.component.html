@@ -1,0 +1,47 @@
+<div class="button-toolbar">
+  <button class="modal-close" (click)="closeDetail()">×</button>
+  <button class="update-hero" >
+    Update
+  </button>
+</div>
+
+<div *ngIf="heroDetail" [class]="'container full-description ' + heroDetail.alignment">
+  <header>
+    <div class="full-description-header-column">
+      Gender: {{heroDetail.gender}}<br />
+      Race: {{heroDetail.race}}<br />
+      Alignment: {{heroDetail.alignment}}
+    </div>
+
+    <div class="full-description-avatar avatar"
+         [style.background-image]="getImagesrc(heroDetail.imageSrc)">
+    </div>
+
+    <div class="full-description-header-column">
+
+      Hair color: {{heroDetail.hairs}}<br/>
+      Eye color: {{heroDetail.eyes}}<br/>
+      Height: {{heroDetail.height}}<br/>
+      Weight: {{heroDetail.weight}}
+    </div>
+  </header>
+
+  <h2>{{heroDetail.heroName}}</h2>
+
+  <div class="full-description-details">
+    <div class="full-description-details-column">
+      <h3>Origin story</h3>
+      {{heroDetail.history}}
+    </div>
+
+    <div class="full-description-details-column">
+      <h3>True Identity</h3>
+      Fullname: {{heroDetail.fullName}}<br />
+      Place of birth: {{heroDetail.placeOfBirth}}<br />
+      Occupation: {{heroDetail.occupation}}
+
+      <h3>Skills</h3>
+      <app-skill-table [hero]="heroDetail"></app-skill-table>
+    </div>
+  </div>
+</div>
