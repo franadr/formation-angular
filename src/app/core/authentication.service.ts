@@ -14,13 +14,14 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  login(username, password): EventEmitter<boolean> {
+  login(loginForm): EventEmitter<boolean> {
     const res: EventEmitter<boolean> = new EventEmitter<boolean>();
-    this._http.post(`${environment.backendUrl}/authenticate`, { username: username, password: password})
+    console.log(loginForm.value);
+    this._http.post(`${environment.backendUrl}/authenticate`, { username: loginForm.value.username, password: loginForm.value.password})
       .subscribe((response: Token) => {
           if(response.token) {
             this.token= response.token;
-            localStorage.setItem('currentUser', JSON.stringify({ username: username, token: this.token }));
+            localStorage.setItem('currentUser', JSON.stringify({ username: loginForm.username, token: this.token }));
             res.emit(true);
           } else {
             res.emit(false);

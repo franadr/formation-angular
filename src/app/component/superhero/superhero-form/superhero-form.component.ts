@@ -24,7 +24,7 @@ export class SuperheroFormComponent {
   }
   handleForm(): void {
     if (this.heroForm.valid) {
-      this._heroService.addHero(this.heroInformation).subscribe(() => {
+      this._heroService.addHero(this.heroForm.value).subscribe(() => {
         this.dialogRef.close(this.heroInformation);
       }, (error) => {
         console.log(error);
