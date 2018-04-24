@@ -1,16 +1,16 @@
 <form [formGroup]="heroForm">
   <h3 mat-dialog-title>Add a new hero</h3>
   <mat-dialog-content>
-    <mat-form-field class="hero-input">
-      <mat-label>Hero name</mat-label>
-      <input  matInput id="heroName" type="text" formControlName="heroName" >
+    <mat-form-field *ngFor="let formElem of heroFormFields" class="hero-input">
+      <mat-label>{{formElem.label}}</mat-label>
+      <input  matInput id="{{formElem.name}}" type="{{formElem.type}}" formControlName="{{formElem.name}}" >
     </mat-form-field>
-    <mat-error *ngIf="heroForm.controls.heroName.errors?.required">
-      Hero name is required
-    </mat-error>
-    <mat-error *ngIf="heroForm.controls.heroName.errors?.minlength && !heroForm.controls.errors?.required">
-      Hero name must at least have 3 characters
-    </mat-error>
+    <!--<mat-error *ngIf="heroForm.controls.heroName.errors?.required">-->
+      <!--Hero name is required-->
+    <!--</mat-error>-->
+    <!--<mat-error *ngIf="heroForm.controls.heroName.errors?.minlength && !heroForm.controls.errors?.required">-->
+      <!--Hero name must at least have 3 characters-->
+    <!--</mat-error>-->
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button color="primary" [disabled]="heroForm.invalid" (click)="handleForm()">Save</button>
